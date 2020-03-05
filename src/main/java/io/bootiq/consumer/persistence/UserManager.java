@@ -24,7 +24,7 @@ public class UserManager {
         return instance;
     }
 
-    public void createUser(User user) {
+    public void createUser(User user) throws Exception {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -34,7 +34,7 @@ public class UserManager {
         entityManager.close();
     }
 
-    public List<User> listAll() {
+    public List<User> listAll() throws Exception {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
@@ -46,7 +46,7 @@ public class UserManager {
         return result;
     }
 
-    public int deleteAll() {
+    public int deleteAll() throws Exception {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 

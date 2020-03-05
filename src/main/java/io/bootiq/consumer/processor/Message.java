@@ -1,5 +1,6 @@
-package io.bootiq.consumer;
+package io.bootiq.consumer.processor;
 
+import io.bootiq.consumer.enums.Instruction;
 import io.bootiq.consumer.persistence.entity.User;
 import lombok.*;
 
@@ -7,10 +8,6 @@ import lombok.*;
 @RequiredArgsConstructor
 @AllArgsConstructor
 public class Message {
-
-    public enum Instruction {
-        CREATE, LIST, DELETE_ALL
-    }
 
     @Getter @Setter @NonNull
     private Instruction instruction;

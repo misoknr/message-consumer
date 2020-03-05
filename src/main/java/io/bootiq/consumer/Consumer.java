@@ -1,14 +1,24 @@
 package io.bootiq.consumer;
 
+import io.bootiq.consumer.processor.Message;
+import io.bootiq.consumer.processor.MessageProcessor;
+import io.bootiq.consumer.processor.result.Result;
+import lombok.Getter;
+
+import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class Consumer implements Runnable {
 
+    public static final int RESULT_QUEUE_SIZE = 1000;
+
     private final BlockingQueue<Message> queue;
+    @Getter
+    private final BlockingQueue<Result> resultQueue = new ArrayBlockingQueue<>(RESULT_QUEUE_SIZE);
     private final MessageProcessor processor = new MessageProcessor();
 
-    private AtomicBoolean running= new AtomicBoolean(false);
+    private AtomicBoolean running = new AtomicBoolean(false);
     private Thread worker;
 
     public Consumer(BlockingQueue<Message> queue) {
@@ -40,7 +50,8 @@ public class Consumer implements Runnable {
     private void consume(Message m) {
         System.out.println("Consuming message: " + m);
 
-        processor.processMessage(m);
+        Result result = processor.processMessage(m);
+        resultQueue.add(result);
     }
 
 }
