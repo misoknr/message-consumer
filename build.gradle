@@ -1,0 +1,22 @@
+plugins {
+    id 'java'
+}
+
+group 'io.bootiq'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 11
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    annotationProcessor group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+
+    implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.12'
+    implementation group: 'org.hibernate', name: 'hibernate-core', version: '5.4.12.Final'
+    implementation group: 'com.h2database', name: 'h2', version: '1.4.200'
+
+    testImplementation group: 'junit', name: 'junit', version: '4.12'
+}
