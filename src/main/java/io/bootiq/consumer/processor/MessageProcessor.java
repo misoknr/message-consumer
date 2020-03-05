@@ -1,6 +1,6 @@
 package io.bootiq.consumer.processor;
 
-import io.bootiq.consumer.persistence.UserManager;
+import io.bootiq.consumer.persistence.dao.UserDAO;
 import io.bootiq.consumer.persistence.entity.User;
 import io.bootiq.consumer.processor.result.CreateUserResult;
 import io.bootiq.consumer.processor.result.DeleteUsersResult;
@@ -11,7 +11,7 @@ import java.util.List;
 
 public class MessageProcessor {
 
-    private final UserManager userManager = UserManager.getInstance();
+    private final UserDAO userDAO = new UserDAO();
 
     public Result processMessage(Message message) {
         Result result = null;
@@ -37,7 +37,7 @@ public class MessageProcessor {
         CreateUserResult result = new CreateUserResult();
 
         try {
-            userManager.createUser(message.getUser());
+            userDAO.createUser(message.getUser());
             result.setSuccess(true);
         } catch (Exception e) {
             result.setSuccess(false);
@@ -50,7 +50,7 @@ public class MessageProcessor {
         DeleteUsersResult result = new DeleteUsersResult();
 
         try {
-            int deletedCount = userManager.deleteAll();
+            int deletedCount = userDAO.deleteAll();
             result.setSuccess(true);
             result.setDeletedCount(deletedCount);
         } catch (Exception e) {
@@ -64,7 +64,7 @@ public class MessageProcessor {
         ListUsersResult result = new ListUsersResult();
 
         try {
-            List<User> userList = userManager.listAll();
+            List<User> userList = userDAO.listAll();
             result.setSuccess(true);
             result.setList(userList);
         } catch (Exception e) {

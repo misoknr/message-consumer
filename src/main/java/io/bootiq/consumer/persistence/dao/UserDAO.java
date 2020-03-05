@@ -1,4 +1,4 @@
-package io.bootiq.consumer.persistence;
+package io.bootiq.consumer.persistence.dao;
 
 import io.bootiq.consumer.persistence.entity.User;
 
@@ -7,22 +7,9 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import java.util.List;
 
-public class UserManager {
+public class UserDAO {
 
     private final EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("io.bootiq.consumer");
-
-    private static UserManager instance;
-
-    private UserManager() {
-    }
-
-    public static UserManager getInstance() {
-        if (instance == null) {
-            instance = new UserManager();
-        }
-
-        return instance;
-    }
 
     public void createUser(User user) throws Exception {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
