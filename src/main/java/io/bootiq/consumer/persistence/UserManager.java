@@ -24,11 +24,11 @@ public class UserManager {
         return instance;
     }
 
-    public void crateUser(String userName) {
+    public void createUser(User user) {
         EntityManager entityManager = entityManagerFactory.createEntityManager();
         entityManager.getTransaction().begin();
 
-        entityManager.persist(new User(userName));
+        entityManager.persist(user);
 
         entityManager.getTransaction().commit();
         entityManager.close();

@@ -12,7 +12,7 @@ public class MessageProcessor {
     public void processMessage(Message message) {
         switch (message.getInstruction()) {
             case CREATE:
-                userManager.crateUser(message.getUserName());
+                userManager.createUser(message.getUser());
                 break;
             case LIST:
                 List<User> userList = userManager.listAll();

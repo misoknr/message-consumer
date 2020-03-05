@@ -1,5 +1,6 @@
 package io.bootiq.consumer;
 
+import io.bootiq.consumer.persistence.entity.User;
 import lombok.*;
 
 @ToString
@@ -15,6 +16,6 @@ public class Message {
     private Instruction instruction;
 
     @Getter @Setter
-    private String userName;
+    private User user;
 
 }

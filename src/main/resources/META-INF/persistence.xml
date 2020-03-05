@@ -10,15 +10,16 @@
 
         <class>io.bootiq.consumer.persistence.entity.User</class>
 
+        <!-- Configuration for Postgres DB -->
         <properties>
-            <property name="javax.persistence.jdbc.driver" value="org.h2.Driver" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1" />
-            <property name="javax.persistence.jdbc.user" value="sa" />
-            <property name="javax.persistence.jdbc.password" value="" />
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/INSERT_DB_NAME" />
+            <property name="javax.persistence.jdbc.user" value="INSERT_USERNAME" />
+            <property name="javax.persistence.jdbc.password" value="INSERT_PASSWORD" />
 
             <property name="hibernate.show_sql" value="true" />
-            <property name="hibernate.hbm2ddl.auto" value="create" />
-            <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect" />
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+            <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQL81Dialect" />
         </properties>
 
     </persistence-unit>
